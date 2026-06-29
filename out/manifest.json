@@ -1,0 +1,388 @@
+{
+  "character": [
+    {
+      "name": "idle_front",
+      "category": "character",
+      "cutout_png": "cutouts/character/idle_front.png",
+      "glb": "glb/character/idle_front.glb",
+      "width_px": 153,
+      "height_px": 425,
+      "fbx": "fbx/character/idle_front.fbx"
+    },
+    {
+      "name": "profile_left",
+      "category": "character",
+      "cutout_png": "cutouts/character/profile_left.png",
+      "glb": "glb/character/profile_left.glb",
+      "width_px": 150,
+      "height_px": 413,
+      "fbx": "fbx/character/profile_left.fbx"
+    },
+    {
+      "name": "profile_right",
+      "category": "character",
+      "cutout_png": "cutouts/character/profile_right.png",
+      "glb": "glb/character/profile_right.glb",
+      "width_px": 149,
+      "height_px": 413,
+      "fbx": "fbx/character/profile_right.fbx"
+    },
+    {
+      "name": "back",
+      "category": "character",
+      "cutout_png": "cutouts/character/back.png",
+      "glb": "glb/character/back.glb",
+      "width_px": 152,
+      "height_px": 408,
+      "fbx": "fbx/character/back.fbx"
+    },
+    {
+      "name": "run",
+      "category": "character",
+      "cutout_png": "cutouts/character/run.png",
+      "glb": "glb/character/run.glb",
+      "width_px": 306,
+      "height_px": 325,
+      "fbx": "fbx/character/run.fbx"
+    },
+    {
+      "name": "attack_slingshot",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot.png",
+      "glb": "glb/character/attack_slingshot.glb",
+      "width_px": 267,
+      "height_px": 340,
+      "fbx": "fbx/character/attack_slingshot.fbx"
+    },
+    {
+      "name": "crouch",
+      "category": "character",
+      "cutout_png": "cutouts/character/crouch.png",
+      "glb": "glb/character/crouch.glb",
+      "width_px": 240,
+      "height_px": 267,
+      "fbx": "fbx/character/crouch.fbx"
+    },
+    {
+      "name": "hurt",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt.png",
+      "glb": "glb/character/hurt.glb",
+      "width_px": 231,
+      "height_px": 314,
+      "fbx": "fbx/character/hurt.fbx"
+    },
+    {
+      "name": "portrait",
+      "category": "character",
+      "cutout_png": "cutouts/character/portrait.png",
+      "glb": "glb/character/portrait.glb",
+      "width_px": 216,
+      "height_px": 236,
+      "fbx": "fbx/character/portrait.fbx"
+    }
+  ],
+  "items": [
+    {
+      "name": "money_small",
+      "category": "items",
+      "cutout_png": "cutouts/items/money_small.png",
+      "glb": "glb/items/money_small.glb",
+      "width_px": 237,
+      "height_px": 143,
+      "fbx": "fbx/items/money_small.fbx"
+    },
+    {
+      "name": "money_medium",
+      "category": "items",
+      "cutout_png": "cutouts/items/money_medium.png",
+      "glb": "glb/items/money_medium.glb",
+      "width_px": 254,
+      "height_px": 154,
+      "fbx": "fbx/items/money_medium.fbx"
+    },
+    {
+      "name": "money_large",
+      "category": "items",
+      "cutout_png": "cutouts/items/money_large.png",
+      "glb": "glb/items/money_large.glb",
+      "width_px": 295,
+      "height_px": 191,
+      "fbx": "fbx/items/money_large.fbx"
+    },
+    {
+      "name": "coin_1",
+      "category": "items",
+      "cutout_png": "cutouts/items/coin_1.png",
+      "glb": "glb/items/coin_1.glb",
+      "width_px": 102,
+      "height_px": 109,
+      "fbx": "fbx/items/coin_1.fbx"
+    },
+    {
+      "name": "coin_5",
+      "category": "items",
+      "cutout_png": "cutouts/items/coin_5.png",
+      "glb": "glb/items/coin_5.glb",
+      "width_px": 130,
+      "height_px": 133,
+      "fbx": "fbx/items/coin_5.fbx"
+    },
+    {
+      "name": "coin_10",
+      "category": "items",
+      "cutout_png": "cutouts/items/coin_10.png",
+      "glb": "glb/items/coin_10.glb",
+      "width_px": 138,
+      "height_px": 141,
+      "fbx": "fbx/items/coin_10.fbx"
+    },
+    {
+      "name": "coxinha",
+      "category": "items",
+      "cutout_png": "cutouts/items/coxinha.png",
+      "glb": "glb/items/coxinha.glb",
+      "width_px": 173,
+      "height_px": 229,
+      "fbx": "fbx/items/coxinha.fbx"
+    },
+    {
+      "name": "sandwich",
+      "category": "items",
+      "cutout_png": "cutouts/items/sandwich.png",
+      "glb": "glb/items/sandwich.glb",
+      "width_px": 321,
+      "height_px": 227,
+      "fbx": "fbx/items/sandwich.fbx"
+    },
+    {
+      "name": "inhaler",
+      "category": "items",
+      "cutout_png": "cutouts/items/inhaler.png",
+      "glb": "glb/items/inhaler.glb",
+      "width_px": 141,
+      "height_px": 207,
+      "fbx": "fbx/items/inhaler.fbx"
+    },
+    {
+      "name": "slingshot",
+      "category": "items",
+      "cutout_png": "cutouts/items/slingshot.png",
+      "glb": "glb/items/slingshot.glb",
+      "width_px": 170,
+      "height_px": 236,
+      "fbx": "fbx/items/slingshot.fbx"
+    },
+    {
+      "name": "soccer_ball",
+      "category": "items",
+      "cutout_png": "cutouts/items/soccer_ball.png",
+      "glb": "glb/items/soccer_ball.glb",
+      "width_px": 214,
+      "height_px": 217,
+      "fbx": "fbx/items/soccer_ball.fbx"
+    },
+    {
+      "name": "rocks",
+      "category": "items",
+      "cutout_png": "cutouts/items/rocks.png",
+      "glb": "glb/items/rocks.glb",
+      "width_px": 209,
+      "height_px": 147,
+      "fbx": "fbx/items/rocks.fbx"
+    },
+    {
+      "name": "piggy_bank",
+      "category": "items",
+      "cutout_png": "cutouts/items/piggy_bank.png",
+      "glb": "glb/items/piggy_bank.glb",
+      "width_px": 248,
+      "height_px": 198,
+      "fbx": "fbx/items/piggy_bank.fbx"
+    }
+  ],
+  "npcs": [
+    {
+      "name": "old_man_walk",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/old_man_walk.png",
+      "glb": "glb/npcs/old_man_walk.glb",
+      "width_px": 342,
+      "height_px": 571,
+      "fbx": "fbx/npcs/old_man_walk.fbx"
+    },
+    {
+      "name": "old_man_idle",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/old_man_idle.png",
+      "glb": "glb/npcs/old_man_idle.glb",
+      "width_px": 263,
+      "height_px": 513,
+      "fbx": "fbx/npcs/old_man_idle.fbx"
+    },
+    {
+      "name": "woman_idle",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/woman_idle.png",
+      "glb": "glb/npcs/woman_idle.glb",
+      "width_px": 364,
+      "height_px": 481,
+      "fbx": "fbx/npcs/woman_idle.fbx"
+    },
+    {
+      "name": "npcs_03",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/npcs_03.png",
+      "glb": "glb/npcs/npcs_03.glb",
+      "width_px": 34,
+      "height_px": 24,
+      "fbx": "fbx/npcs/npcs_03.fbx"
+    },
+    {
+      "name": "npcs_04",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/npcs_04.png",
+      "glb": "glb/npcs/npcs_04.glb",
+      "width_px": 48,
+      "height_px": 9,
+      "fbx": "fbx/npcs/npcs_04.fbx"
+    },
+    {
+      "name": "npcs_05",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/npcs_05.png",
+      "glb": "glb/npcs/npcs_05.glb",
+      "width_px": 34,
+      "height_px": 10,
+      "fbx": "fbx/npcs/npcs_05.fbx"
+    },
+    {
+      "name": "dog_idle",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/dog_idle.png",
+      "glb": "glb/npcs/dog_idle.glb",
+      "width_px": 261,
+      "height_px": 265,
+      "fbx": "fbx/npcs/dog_idle.fbx"
+    },
+    {
+      "name": "dog_bark",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/dog_bark.png",
+      "glb": "glb/npcs/dog_bark.glb",
+      "width_px": 296,
+      "height_px": 260,
+      "fbx": "fbx/npcs/dog_bark.fbx"
+    },
+    {
+      "name": "npcs_08",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/npcs_08.png",
+      "glb": "glb/npcs/npcs_08.glb",
+      "width_px": 29,
+      "height_px": 23,
+      "fbx": "fbx/npcs/npcs_08.fbx"
+    },
+    {
+      "name": "npcs_09",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/npcs_09.png",
+      "glb": "glb/npcs/npcs_09.glb",
+      "width_px": 36,
+      "height_px": 8,
+      "fbx": "fbx/npcs/npcs_09.fbx"
+    },
+    {
+      "name": "npcs_10",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/npcs_10.png",
+      "glb": "glb/npcs/npcs_10.glb",
+      "width_px": 30,
+      "height_px": 13,
+      "fbx": "fbx/npcs/npcs_10.fbx"
+    },
+    {
+      "name": "pothole",
+      "category": "npcs",
+      "cutout_png": "cutouts/npcs/pothole.png",
+      "glb": "glb/npcs/pothole.glb",
+      "width_px": 409,
+      "height_px": 172,
+      "fbx": "fbx/npcs/pothole.fbx"
+    }
+  ],
+  "props": [
+    {
+      "name": "props_00",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_00.png",
+      "glb": "glb/props/props_00.glb",
+      "width_px": 547,
+      "height_px": 425,
+      "fbx": "fbx/props/props_00.fbx"
+    },
+    {
+      "name": "props_01",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_01.png",
+      "glb": "glb/props/props_01.glb",
+      "width_px": 498,
+      "height_px": 381,
+      "fbx": "fbx/props/props_01.fbx"
+    },
+    {
+      "name": "props_02",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_02.png",
+      "glb": "glb/props/props_02.glb",
+      "width_px": 206,
+      "height_px": 297,
+      "fbx": "fbx/props/props_02.fbx"
+    },
+    {
+      "name": "props_03",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_03.png",
+      "glb": "glb/props/props_03.glb",
+      "width_px": 424,
+      "height_px": 277,
+      "fbx": "fbx/props/props_03.fbx"
+    },
+    {
+      "name": "props_04",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_04.png",
+      "glb": "glb/props/props_04.glb",
+      "width_px": 171,
+      "height_px": 282,
+      "fbx": "fbx/props/props_04.fbx"
+    },
+    {
+      "name": "props_05",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_05.png",
+      "glb": "glb/props/props_05.glb",
+      "width_px": 381,
+      "height_px": 249,
+      "fbx": "fbx/props/props_05.fbx"
+    },
+    {
+      "name": "props_06",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_06.png",
+      "glb": "glb/props/props_06.glb",
+      "width_px": 196,
+      "height_px": 187,
+      "fbx": "fbx/props/props_06.fbx"
+    },
+    {
+      "name": "props_07",
+      "category": "props",
+      "cutout_png": "cutouts/props/props_07.png",
+      "glb": "glb/props/props_07.glb",
+      "width_px": 166,
+      "height_px": 233,
+      "fbx": "fbx/props/props_07.fbx"
+    }
+  ]
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo: animações dos modelos</title>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+  body { background:#1c1c1c; color:#eee; font-family:sans-serif; margin:0; padding:20px;
+         display:flex; flex-direction:column; align-items:center; }
+  h1 { font-size:18px; margin-bottom:14px; }
+  .tabs { display:flex; gap:8px; margin-bottom:16px; }
+  .tab {
+    background:#262626; border:1px solid #3a3a3a; border-radius:8px; padding:8px 18px;
+    cursor:pointer; font-size:14px; color:#aaa;
+  }
+  .tab.active { background:#2f5d2f; border-color:#7fd97f; color:#fff; }
+
+  .selector { display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+  .arrow {
+    background:#262626; border:1px solid #3a3a3a; border-radius:50%; width:38px; height:38px;
+    font-size:18px; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .arrow:hover { background:#3a3a3a; }
+  .subject-label { font-size:16px; font-weight:bold; min-width:200px; text-align:center; }
+
+  .viewer-wrap { width:480px; height:560px; }
+  model-viewer { width:100%; height:100%; background:#2b2b2b; border-radius:12px; }
+
+  .pose-label { margin-top:10px; font-size:14px; color:#7fd97f; }
+  .keys { margin-top:18px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; max-width:560px; }
+  .key {
+    background:#262626; border:1px solid #3a3a3a; border-radius:8px; padding:10px;
+    text-align:center; font-size:13px; user-select:none;
+  }
+  .key b { display:block; font-size:14px; color:#fff; }
+  .key.active { background:#2f5d2f; border-color:#7fd97f; }
+  .hint { color:#777; font-size:12px; margin-top:14px; max-width:480px; text-align:center; }
+</style>
+</head>
+<body>
+  <h1>Preview 3D e animações (troca de pose / rotação de itens)</h1>
+
+  <div class="tabs">
+    <div class="tab active" id="tabSubjects">Personagens / NPCs</div>
+    <div class="tab" id="tabItems">Itens</div>
+  </div>
+
+  <div class="selector">
+    <div class="arrow" id="prevBtn">&#9664;</div>
+    <div class="subject-label" id="subjectLabel">-</div>
+    <div class="arrow" id="nextBtn">&#9654;</div>
+  </div>
+
+  <div class="viewer-wrap">
+    <model-viewer id="viewer" camera-controls shadow-intensity="1" exposure="1"></model-viewer>
+  </div>
+  <div class="pose-label" id="poseLabel"></div>
+
+  <div class="keys" id="keysPanel"></div>
+  <div class="hint" id="hint"></div>
+
+<script>
+  const SUBJECTS = {
+    character: {
+      label: 'Personagem principal',
+      category: 'character',
+      idle: 'idle_front',
+      poses: [
+        { name: 'idle_front', label: 'Parado (frente)' },
+        { name: 'profile_left', label: 'Perfil esquerdo' },
+        { name: 'profile_right', label: 'Perfil direito' },
+        { name: 'back', label: 'De costas' },
+        { name: 'run', label: 'Correndo' },
+        { name: 'attack_slingshot', label: 'Estilingue' },
+        { name: 'crouch', label: 'Agachado' },
+        { name: 'hurt', label: 'Machucado' },
+      ],
+      keys: [
+        { code: 'KeyW', pose: 'run', label: 'W / ↑', desc: 'correr' },
+        { code: 'ArrowUp', pose: 'run', label: null },
+        { code: 'KeyA', pose: 'profile_left', label: 'A', desc: 'perfil esq.' },
+        { code: 'KeyD', pose: 'profile_right', label: 'D', desc: 'perfil dir.' },
+        { code: 'KeyS', pose: 'back', label: 'S', desc: 'de costas' },
+        { code: 'Space', pose: 'attack_slingshot', label: 'Espaço', desc: 'estilingue' },
+        { code: 'KeyC', pose: 'crouch', label: 'C', desc: 'agachar' },
+        { code: 'KeyX', pose: 'hurt', label: 'X', desc: 'machucado' },
+      ],
+    },
+    old_man: {
+      label: 'Senhor da vassoura',
+      category: 'npcs',
+      idle: 'old_man_idle',
+      poses: [
+        { name: 'old_man_idle', label: 'Parado' },
+        { name: 'old_man_walk', label: 'Andando' },
+      ],
+      keys: [
+        { code: 'KeyW', pose: 'old_man_walk', label: 'W / ↑', desc: 'andar' },
+        { code: 'ArrowUp', pose: 'old_man_walk', label: null },
+      ],
+    },
+    woman: {
+      label: 'Mulher',
+      category: 'npcs',
+      idle: 'woman_idle',
+      poses: [
+        { name: 'woman_idle', label: 'Parada' },
+      ],
+      keys: [],
+    },
+    dog: {
+      label: 'Cachorro',
+      category: 'npcs',
+      idle: 'dog_idle',
+      poses: [
+        { name: 'dog_idle', label: 'Calmo' },
+        { name: 'dog_bark', label: 'Latindo' },
+      ],
+      keys: [
+        { code: 'Space', pose: 'dog_bark', label: 'Espaço', desc: 'latir' },
+      ],
+    },
+  };
+  const SUBJECT_ORDER = ['character', 'old_man', 'woman', 'dog'];
+
+  const ITEMS = [
+    { name: 'money_small', label: 'Dinheiro (maço pequeno)' },
+    { name: 'money_medium', label: 'Dinheiro (maço médio)' },
+    { name: 'money_large', label: 'Dinheiro (maço grande)' },
+    { name: 'coin_1', label: 'Moeda de 1' },
+    { name: 'coin_5', label: 'Moeda de 5' },
+    { name: 'coin_10', label: 'Moeda de 10' },
+    { name: 'coxinha', label: 'Coxinha' },
+    { name: 'sandwich', label: 'Sanduíche' },
+    { name: 'inhaler', label: 'Bombinha' },
+    { name: 'slingshot', label: 'Estilingue' },
+    { name: 'soccer_ball', label: 'Bola de futebol' },
+    { name: 'rocks', label: 'Pedras' },
+    { name: 'piggy_bank', label: 'Cofrinho' },
+  ];
+
+  const viewer = document.getElementById('viewer');
+  const subjectLabel = document.getElementById('subjectLabel');
+  const poseLabel = document.getElementById('poseLabel');
+  const keysPanel = document.getElementById('keysPanel');
+  const hint = document.getElementById('hint');
+  const tabSubjects = document.getElementById('tabSubjects');
+  const tabItems = document.getElementById('tabItems');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let mode = 'subjects'; // 'subjects' | 'items'
+  let subjectIndex = 0;
+  let itemIndex = 0;
+  const held = new Set();
+  let bobRaf = null;
+
+  function glbPath(category, name) {
+    return `../glb/${category}/${name}.glb`;
+  }
+
+  function stopBob() {
+    if (bobRaf) { cancelAnimationFrame(bobRaf); bobRaf = null; }
+    viewer.style.transform = '';
+  }
+
+  function startBob() {
+    const start = performance.now();
+    function frame(now) {
+      const t = (now - start) / 1000;
+      const y = Math.sin(t * 2) * 8; // px
+      viewer.style.transform = `translateY(${y}px)`;
+      bobRaf = requestAnimationFrame(frame);
+    }
+    bobRaf = requestAnimationFrame(frame);
+  }
+
+  function renderKeys(subject) {
+    keysPanel.innerHTML = '';
+    const visible = subject.keys.filter(k => k.label !== null);
+    if (visible.length === 0) {
+      keysPanel.style.display = 'none';
+      return;
+    }
+    keysPanel.style.display = 'grid';
+    for (const k of visible) {
+      const div = document.createElement('div');
+      div.className = 'key';
+      const codes = subject.keys.filter(kk => kk.pose === k.pose).map(kk => kk.code);
+      div.dataset.codes = codes.join(',');
+      div.innerHTML = `<b>${k.label}</b>${k.desc}`;
+      const press = () => { codes.forEach(c => held.add(c)); applySubject(false); };
+      const release = () => { codes.forEach(c => held.delete(c)); applySubject(false); };
+      div.addEventListener('mousedown', press);
+      div.addEventListener('mouseup', release);
+      div.addEventListener('mouseleave', release);
+      keysPanel.appendChild(div);
+    }
+    const idleDiv = document.createElement('div');
+    idleDiv.className = 'key';
+    idleDiv.innerHTML = `<b>(solto)</b>idle`;
+    keysPanel.appendChild(idleDiv);
+  }
+
+  function currentSubjectPose(subject) {
+    for (const k of subject.keys) {
+      if (held.has(k.code)) return k.pose;
+    }
+    return subject.idle;
+  }
+
+  function applySubject(resetKeys) {
+    stopBob();
+    viewer.removeAttribute('auto-rotate');
+    viewer.cameraControls = true;
+    if (resetKeys) held.clear();
+
+    const key = SUBJECT_ORDER[subjectIndex];
+    const subject = SUBJECTS[key];
+    subjectLabel.textContent = subject.label;
+    renderKeys(subject);
+    hint.textContent = 'Segure uma tecla (ou clique no botão) pra trocar de pose. Arraste o modelo pra orbitar.';
+
+    const pose = currentSubjectPose(subject);
+    viewer.setAttribute('src', glbPath(subject.category, pose));
+    const poseInfo = subject.poses.find(p => p.name === pose);
+    poseLabel.textContent = poseInfo ? poseInfo.label : pose;
+
+    document.querySelectorAll('.key').forEach(el => {
+      const codes = (el.dataset.codes || '').split(',').filter(Boolean);
+      el.classList.toggle('active', codes.some(c => held.has(c)));
+    });
+  }
+
+  function applyItem() {
+    viewer.cameraControls = true;
+    viewer.setAttribute('auto-rotate', '');
+    viewer.setAttribute('auto-rotate-delay', '0');
+    viewer.setAttribute('rotation-per-second', '60deg');
+    startBob();
+
+    const item = ITEMS[itemIndex];
+    subjectLabel.textContent = item.label;
+    viewer.setAttribute('src', glbPath('items', item.name));
+    poseLabel.textContent = '';
+    keysPanel.style.display = 'none';
+    hint.textContent = 'Rotação e flutuação automáticas (mesma ideia do ItemAnimator.cs na Unity). Arraste pra orbitar manualmente também.';
+  }
+
+  function render() {
+    if (mode === 'subjects') applySubject(true);
+    else applyItem();
+  }
+
+  tabSubjects.addEventListener('click', () => {
+    mode = 'subjects';
+    tabSubjects.classList.add('active');
+    tabItems.classList.remove('active');
+    render();
+  });
+  tabItems.addEventListener('click', () => {
+    mode = 'items';
+    tabItems.classList.add('active');
+    tabSubjects.classList.remove('active');
+    render();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (mode === 'subjects') {
+      subjectIndex = (subjectIndex - 1 + SUBJECT_ORDER.length) % SUBJECT_ORDER.length;
+    } else {
+      itemIndex = (itemIndex - 1 + ITEMS.length) % ITEMS.length;
+    }
+    render();
+  });
+  nextBtn.addEventListener('click', () => {
+    if (mode === 'subjects') {
+      subjectIndex = (subjectIndex + 1) % SUBJECT_ORDER.length;
+    } else {
+      itemIndex = (itemIndex + 1) % ITEMS.length;
+    }
+    render();
+  });
+
+  window.addEventListener('keydown', e => {
+    if (mode !== 'subjects') return;
+    held.add(e.code);
+    applySubject(false);
+  });
+  window.addEventListener('keyup', e => {
+    if (mode !== 'subjects') return;
+    held.delete(e.code);
+    applySubject(false);
+  });
+
+  render();
+</script>
+</body>
+</html>

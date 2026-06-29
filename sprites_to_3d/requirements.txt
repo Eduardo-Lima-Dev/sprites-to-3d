@@ -1,0 +1,6 @@
+numpy
+opencv-python
+trimesh
+shapely
+mapbox-earcut
+pillow
