@@ -116,7 +116,12 @@ def _fill_enclosed_pockets(bg: np.ndarray, bgr: np.ndarray, x: int, y: int, w: i
             loDiff=(60, 60, 60), upDiff=(60, 60, 60), flags=flags,
         )
         pocket = trial_mask[1:-1, 1:-1] > 0
-        if pocket.sum() > 0.3 * sprite_area:
+        # so conta o quanto disso e' realmente terreno NOVO tomado do sprite --
+        # o flood tambem reflood a margem de fundo verdadeiro ja conhecida em
+        # volta da silhueta (presente no recorte por causa da dilatacao do
+        # merge_kernel), o que nao representa risco nenhum por si so.
+        claimed_from_sprite = pocket & sprite_mask
+        if claimed_from_sprite.sum() > 0.3 * sprite_area:
             continue  # vazou pra dentro do proprio sprite -- descarta
 
         # rejeita tambem se isso quebrar o sprite em mais pedacos (sinal de
@@ -155,17 +160,31 @@ def segment_sheet(image_path: Path, params: dict) -> list[np.ndarray]:
 
     # primeira passada: localiza os bboxes de cada sprite (antes da limpeza
     # final) so pra poder rodar o preenchimento de bolsoes internos com escopo
-    # local a cada um. So roda pras categorias marcadas com fill_pockets=True
-    # (personagens/NPCs com poses de membros abertos) -- objetos rigidos
-    # (items/props) nao tem esse tipo de vao e correm risco de fragmentar.
-    if params.get("fill_pockets"):
+    # local a cada um. `fill_pockets` pode ser True (todos os sprites da
+    # categoria), False/None (nenhum) ou um conjunto de indices especificos
+    # (na mesma ordem de leitura usada no resultado final) -- usado pra
+    # corrigir só um sprite pontual numa categoria de objetos rigidos
+    # (items/props), sem arriscar fragmentar os outros.
+    fill_pockets = params.get("fill_pockets")
+    if fill_pockets:
         prelim_fg = (~bg).astype(np.uint8) * 255
         prelim_merge = cv2.dilate(prelim_fg, np.ones((merge_kernel, merge_kernel), np.uint8))
         prelim_num, _, prelim_stats, _ = cv2.connectedComponentsWithStats(prelim_merge, connectivity=8)
+
+        candidates = []
         for label in range(1, prelim_num):
             if prelim_stats[label, cv2.CC_STAT_AREA] < params["min_area"]:
                 continue
             x, y, w, h = prelim_stats[label, cv2.CC_STAT_LEFT:cv2.CC_STAT_LEFT + 4]
+            candidates.append((x, y, w, h))
+        # mesma ordenacao (linha, depois coluna) usada no resultado final, pra
+        # que os indices de `fill_pockets` correspondam aos nomes em POSE_NAMES
+        candidates.sort(key=lambda c: (round(c[1] / 80), c[0]))
+
+        allowed_indices = None if fill_pockets is True else set(fill_pockets)
+        for i, (x, y, w, h) in enumerate(candidates):
+            if allowed_indices is not None and i not in allowed_indices:
+                continue
             bg = _fill_enclosed_pockets(bg, bgr, x, y, w, h)
 
     fg_mask = _clean_mask(~bg, params["erode_px"])

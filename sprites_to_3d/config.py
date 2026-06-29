@@ -108,7 +108,10 @@ DEFAULTS = {
 CATEGORY_OVERRIDES = {
     "character": {"thickness_frac": 0.05, "merge_kernel": 11, "fill_pockets": True},
     "npcs": {"thickness_frac": 0.05, "merge_kernel": 11, "fill_pockets": True},
-    "items": {"thickness_frac": 0.12, "merge_kernel": 7},
+    # fill_pockets so no slingshot (indice 9, "Y" vazado entre as duas pontas)
+    # -- o resto dos items e' objeto rigido sem vao desse tipo, e correu risco
+    # de fragmentar (moeda, sanduiche, cofrinho) quando testado com tudo ligado
+    "items": {"thickness_frac": 0.12, "merge_kernel": 7, "fill_pockets": {9}},
     "props": {"thickness_frac": 0.08, "merge_kernel": 7, "min_area": 900},
 }
 
