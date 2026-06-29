@@ -102,11 +102,12 @@ DEFAULTS = {
     "thickness_frac": 0.06,   # espessura da extrusao = thickness_frac * altura do sprite (em pixels)
     "world_units_per_pixel": 0.01,  # escala: 1px de sprite = 0.01 unidades de mundo (1254px ~ 12.5u)
     "simplify_tolerance": 1.5,  # tolerancia (px) de simplificacao do contorno (approxPolyDP / shapely)
+    "fill_pockets": False,    # preenche bolsoes de fundo cercados pela silhueta (vao entre pernas etc.)
 }
 
 CATEGORY_OVERRIDES = {
-    "character": {"thickness_frac": 0.05, "merge_kernel": 11},
-    "npcs": {"thickness_frac": 0.05, "merge_kernel": 11},
+    "character": {"thickness_frac": 0.05, "merge_kernel": 11, "fill_pockets": True},
+    "npcs": {"thickness_frac": 0.05, "merge_kernel": 11, "fill_pockets": True},
     "items": {"thickness_frac": 0.12, "merge_kernel": 7},
     "props": {"thickness_frac": 0.08, "merge_kernel": 7, "min_area": 900},
 }
