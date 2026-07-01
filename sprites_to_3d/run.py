@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -19,6 +20,19 @@ def main():
     parser.add_argument("--output", default=str(OUT_DIR), help="Pasta de saida")
     parser.add_argument("--only", default=None, help="Processar apenas esta categoria (ex: character)")
     parser.add_argument("--no-fbx", action="store_true", help="Parar apos gerar os GLB, sem converter para FBX")
+    parser.add_argument(
+        "--category",
+        default=None,
+        help=(
+            "Ignora o mapa fixo SHEET_CATEGORY e processa toda imagem encontrada "
+            "diretamente em --input, atribuindo essa categoria a todas (ex: houses)"
+        ),
+    )
+    parser.add_argument(
+        "--name-prefix",
+        default="house",
+        help="Prefixo usado para nomear cada folha em modo --category (ex: house -> house_01, house_02, ...)",
+    )
     args = parser.parse_args()
 
     input_dir = Path(args.input)
@@ -36,13 +50,25 @@ def main():
     manifest_path = output_dir / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
 
-    for filename, category in SHEET_CATEGORY.items():
+    if args.category:
+        image_exts = {".png", ".jpg", ".jpeg"}
+        sheet_paths = sorted(p for p in input_dir.iterdir() if p.suffix.lower() in image_exts)
+        sheets = [
+            (sheet_path, args.category, f"{args.name_prefix}_{idx:02d}")
+            for idx, sheet_path in enumerate(sheet_paths, start=1)
+        ]
+    else:
+        sheets = [
+            (input_dir / filename, category, None)
+            for filename, category in SHEET_CATEGORY.items()
+        ]
+
+    for sheet_path, category, name_prefix in sheets:
         if category not in CONVERTIBLE_CATEGORIES:
             continue
         if args.only and category != args.only:
             continue
 
-        sheet_path = input_dir / filename
         if not sheet_path.exists():
             print(f"[{category}] arquivo nao encontrado, pulando: {sheet_path}")
             continue
@@ -52,12 +78,13 @@ def main():
         cutouts = segment_sheet(sheet_path, params)
         print(f"[{category}] {len(cutouts)} sprite(s) detectado(s)")
 
-        manifest[category] = []
+        manifest.setdefault(category, [])
         cat_cutout_dir = cutouts_dir / category
         cat_cutout_dir.mkdir(parents=True, exist_ok=True)
 
         for i, rgba in enumerate(cutouts):
-            name = POSE_NAMES.get(category, {}).get(i, f"{category}_{i:02d}")
+            pose_name = POSE_NAMES.get(category, {}).get(i, f"{category}_{i:02d}")
+            name = f"{name_prefix}_{pose_name}" if name_prefix else pose_name
 
             cutout_path = cat_cutout_dir / f"{name}.png"
             cv2.imwrite(str(cutout_path), cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGRA))
@@ -89,6 +116,9 @@ def main():
                 ok = convert_glb_to_fbx(glb_path, fbx_path)
                 if ok:
                     entry["fbx"] = str(fbx_path.relative_to(output_dir))
+                    tex_dst = fbx_path.parent / "Textures" / cutout_path.name
+                    tex_dst.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(cutout_path, tex_dst)
                 else:
                     print(f"  [{name}] conversao para FBX falhou")
 

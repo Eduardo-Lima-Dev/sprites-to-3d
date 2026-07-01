@@ -15,7 +15,7 @@ SHEET_CATEGORY = {
 }
 
 # Categorias que sao efetivamente convertidas para 3D
-CONVERTIBLE_CATEGORIES = {"character", "items", "npcs", "props"}
+CONVERTIBLE_CATEGORIES = {"character", "items", "npcs", "props", "houses"}
 
 # Nome semantico por indice de sprite dentro da categoria (na ordem de leitura da
 # folha: topo->baixo, esquerda->direita). Usado para nomear os arquivos de saida e
@@ -55,6 +55,10 @@ POSE_NAMES = {
         10: "soccer_ball",
         11: "rocks",
         12: "piggy_bank",
+    },
+    "houses": {
+        0: "front",
+        1: "side",
     },
 }
 
@@ -113,6 +117,9 @@ CATEGORY_OVERRIDES = {
     # de fragmentar (moeda, sanduiche, cofrinho) quando testado com tudo ligado
     "items": {"thickness_frac": 0.12, "merge_kernel": 7, "fill_pockets": {9}},
     "props": {"thickness_frac": 0.08, "merge_kernel": 7, "min_area": 900},
+    # merge_kernel maior: antena, cano de saida de agua e ferros de arranque no
+    # topo do telhado ficam com um pequeno vao de fundo ate' o corpo da casa
+    "houses": {"thickness_frac": 0.08, "merge_kernel": 13, "min_area": 900},
 }
 
 

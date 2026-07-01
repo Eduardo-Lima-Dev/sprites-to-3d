@@ -1,0 +1,184 @@
+{
+  "houses": [
+    {
+      "name": "house_01_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_01_front.png",
+      "glb": "glb/houses/house_01_front.glb",
+      "width_px": 775,
+      "height_px": 738,
+      "fbx": "fbx/houses/house_01_front.fbx"
+    },
+    {
+      "name": "house_01_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_01_side.png",
+      "glb": "glb/houses/house_01_side.glb",
+      "width_px": 742,
+      "height_px": 640,
+      "fbx": "fbx/houses/house_01_side.fbx"
+    },
+    {
+      "name": "house_02_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_02_front.png",
+      "glb": "glb/houses/house_02_front.glb",
+      "width_px": 731,
+      "height_px": 813,
+      "fbx": "fbx/houses/house_02_front.fbx"
+    },
+    {
+      "name": "house_02_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_02_side.png",
+      "glb": "glb/houses/house_02_side.glb",
+      "width_px": 777,
+      "height_px": 769,
+      "fbx": "fbx/houses/house_02_side.fbx"
+    },
+    {
+      "name": "house_03_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_03_front.png",
+      "glb": "glb/houses/house_03_front.glb",
+      "width_px": 808,
+      "height_px": 653,
+      "fbx": "fbx/houses/house_03_front.fbx"
+    },
+    {
+      "name": "house_03_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_03_side.png",
+      "glb": "glb/houses/house_03_side.glb",
+      "width_px": 774,
+      "height_px": 660,
+      "fbx": "fbx/houses/house_03_side.fbx"
+    },
+    {
+      "name": "house_04_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_04_front.png",
+      "glb": "glb/houses/house_04_front.glb",
+      "width_px": 741,
+      "height_px": 832,
+      "fbx": "fbx/houses/house_04_front.fbx"
+    },
+    {
+      "name": "house_04_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_04_side.png",
+      "glb": "glb/houses/house_04_side.glb",
+      "width_px": 743,
+      "height_px": 842,
+      "fbx": "fbx/houses/house_04_side.fbx"
+    },
+    {
+      "name": "house_05_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_05_front.png",
+      "glb": "glb/houses/house_05_front.glb",
+      "width_px": 780,
+      "height_px": 650,
+      "fbx": "fbx/houses/house_05_front.fbx"
+    },
+    {
+      "name": "house_05_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_05_side.png",
+      "glb": "glb/houses/house_05_side.glb",
+      "width_px": 786,
+      "height_px": 650,
+      "fbx": "fbx/houses/house_05_side.fbx"
+    },
+    {
+      "name": "house_06_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_06_front.png",
+      "glb": "glb/houses/house_06_front.glb",
+      "width_px": 815,
+      "height_px": 603,
+      "fbx": "fbx/houses/house_06_front.fbx"
+    },
+    {
+      "name": "house_06_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_06_side.png",
+      "glb": "glb/houses/house_06_side.glb",
+      "width_px": 794,
+      "height_px": 554,
+      "fbx": "fbx/houses/house_06_side.fbx"
+    },
+    {
+      "name": "house_07_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_07_front.png",
+      "glb": "glb/houses/house_07_front.glb",
+      "width_px": 684,
+      "height_px": 680,
+      "fbx": "fbx/houses/house_07_front.fbx"
+    },
+    {
+      "name": "house_07_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_07_side.png",
+      "glb": "glb/houses/house_07_side.glb",
+      "width_px": 743,
+      "height_px": 666,
+      "fbx": "fbx/houses/house_07_side.fbx"
+    },
+    {
+      "name": "house_08_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_08_front.png",
+      "glb": "glb/houses/house_08_front.glb",
+      "width_px": 815,
+      "height_px": 666,
+      "fbx": "fbx/houses/house_08_front.fbx"
+    },
+    {
+      "name": "house_08_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_08_side.png",
+      "glb": "glb/houses/house_08_side.glb",
+      "width_px": 791,
+      "height_px": 658,
+      "fbx": "fbx/houses/house_08_side.fbx"
+    },
+    {
+      "name": "house_09_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_09_front.png",
+      "glb": "glb/houses/house_09_front.glb",
+      "width_px": 814,
+      "height_px": 702,
+      "fbx": "fbx/houses/house_09_front.fbx"
+    },
+    {
+      "name": "house_09_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_09_side.png",
+      "glb": "glb/houses/house_09_side.glb",
+      "width_px": 794,
+      "height_px": 695,
+      "fbx": "fbx/houses/house_09_side.fbx"
+    },
+    {
+      "name": "house_10_front",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_10_front.png",
+      "glb": "glb/houses/house_10_front.glb",
+      "width_px": 830,
+      "height_px": 756,
+      "fbx": "fbx/houses/house_10_front.fbx"
+    },
+    {
+      "name": "house_10_side",
+      "category": "houses",
+      "cutout_png": "cutouts/houses/house_10_side.png",
+      "glb": "glb/houses/house_10_side.glb",
+      "width_px": 773,
+      "height_px": 706,
+      "fbx": "fbx/houses/house_10_side.fbx"
+    }
+  ]
+}
