@@ -13,6 +13,81 @@ from segment import segment_sheet
 from extrude import cutout_to_mesh, export_glb
 from to_fbx import convert_glb_to_fbx, find_converter
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+def _ask(prompt: str, default: str = "") -> str:
+    suffix = f" [{default}]" if default else ""
+    answer = input(f"{prompt}{suffix}: ").strip()
+    return answer or default
+
+
+def _ask_yes_no(prompt: str, default_yes: bool = True) -> bool:
+    suffix = "S/n" if default_yes else "s/N"
+    answer = input(f"{prompt} ({suffix}): ").strip().lower()
+    if not answer:
+        return default_yes
+    return answer.startswith("s")
+
+
+def _resolve(path_str: str) -> Path:
+    path = Path(path_str)
+    return path if path.is_absolute() else (PROJECT_ROOT / path)
+
+
+def interactive_args() -> argparse.Namespace:
+    """Pergunta ao usuario o que processar, ao inves de exigir flags de linha de
+    comando -- usado quando o script e' chamado sem nenhum argumento, pra facilitar
+    rodar o pipeline pra um novo lote de imagens sem precisar lembrar a sintaxe."""
+    print("=== sprites_to_3d ===")
+    print("O que voce quer converter?")
+    print("  1) Os assets padrao ja mapeados em config.py (character/items/npcs/props)")
+    print("  2) Uma pasta nova de imagens (categoria customizada)")
+    choice = _ask("Escolha 1 ou 2", "2")
+
+    args = argparse.Namespace(
+        input=str(ASSETS_DIR), output=str(OUT_DIR),
+        only=None, no_fbx=False, category=None, name_prefix="item",
+    )
+
+    if choice == "1":
+        only = _ask("Processar so uma categoria? (Enter = todas) [character/items/npcs/props]")
+        args.only = only or None
+        args.output = str(_resolve(_ask("Pasta de saida", "out")))
+    else:
+        input_dir = _ask("Pasta com as imagens (caminho a partir da raiz do projeto)", "Assets/Sprites")
+        resolved_input = _resolve(input_dir)
+        while not resolved_input.is_dir():
+            print(f"  Pasta nao encontrada: {resolved_input}")
+            input_dir = _ask("Pasta com as imagens (caminho a partir da raiz do projeto)")
+            resolved_input = _resolve(input_dir)
+        args.input = str(resolved_input)
+
+        category = _ask("Nome da categoria (ex: houses, furniture, vehicles)")
+        while not category:
+            category = _ask("Nome da categoria (obrigatorio)")
+        args.category = category
+        args.name_prefix = _ask("Prefixo para nomear os arquivos gerados", category)
+        args.output = str(_resolve(_ask("Pasta de saida (caminho a partir da raiz do projeto)", category.capitalize())))
+
+    gerar_fbx = _ask_yes_no("Gerar FBX com texturas (alem do GLB)?", True)
+    args.no_fbx = not gerar_fbx
+
+    print("\nResumo:")
+    print(f"  entrada:   {args.input}")
+    print(f"  saida:     {args.output}")
+    if args.category:
+        print(f"  categoria: {args.category}  (prefixo: {args.name_prefix})")
+    if args.only:
+        print(f"  somente:   {args.only}")
+    print(f"  gerar fbx: {'sim' if not args.no_fbx else 'nao'}\n")
+
+    if not _ask_yes_no("Continuar?", True):
+        print("Cancelado.")
+        sys.exit(0)
+
+    return args
+
 
 def main():
     parser = argparse.ArgumentParser(description="Converte sprite sheets 2D em modelos 3D 2.5D")
@@ -30,10 +105,10 @@ def main():
     )
     parser.add_argument(
         "--name-prefix",
-        default="house",
+        default="item",
         help="Prefixo usado para nomear cada folha em modo --category (ex: house -> house_01, house_02, ...)",
     )
-    args = parser.parse_args()
+    args = parser.parse_args() if len(sys.argv) > 1 else interactive_args()
 
     input_dir = Path(args.input)
     output_dir = Path(args.output)
@@ -52,11 +127,18 @@ def main():
 
     if args.category:
         image_exts = {".png", ".jpg", ".jpeg"}
-        sheet_paths = sorted(p for p in input_dir.iterdir() if p.suffix.lower() in image_exts)
-        sheets = [
-            (sheet_path, args.category, f"{args.name_prefix}_{idx:02d}")
-            for idx, sheet_path in enumerate(sheet_paths, start=1)
-        ]
+        if input_dir.is_file():
+            sheet_paths = [input_dir]
+        else:
+            sheet_paths = sorted(p for p in input_dir.iterdir() if p.suffix.lower() in image_exts)
+        # com uma unica folha nao ha' o que numerar -- usa o prefixo tal qual foi digitado
+        if len(sheet_paths) == 1:
+            sheets = [(sheet_paths[0], args.category, args.name_prefix)]
+        else:
+            sheets = [
+                (sheet_path, args.category, f"{args.name_prefix}_{idx:02d}")
+                for idx, sheet_path in enumerate(sheet_paths, start=1)
+            ]
     else:
         sheets = [
             (input_dir / filename, category, None)
@@ -64,7 +146,9 @@ def main():
         ]
 
     for sheet_path, category, name_prefix in sheets:
-        if category not in CONVERTIBLE_CATEGORIES:
+        # em modo --category o usuario escolheu explicitamente o que converter;
+        # o filtro CONVERTIBLE_CATEGORIES so se aplica ao mapa fixo SHEET_CATEGORY
+        if not args.category and category not in CONVERTIBLE_CATEGORIES:
             continue
         if args.only and category != args.only:
             continue
@@ -83,8 +167,14 @@ def main():
         cat_cutout_dir.mkdir(parents=True, exist_ok=True)
 
         for i, rgba in enumerate(cutouts):
-            pose_name = POSE_NAMES.get(category, {}).get(i, f"{category}_{i:02d}")
-            name = f"{name_prefix}_{pose_name}" if name_prefix else pose_name
+            if name_prefix and len(cutouts) == 1:
+                # folha com um unico sprite: o prefixo digitado pelo usuario ja'
+                # e' o nome final -- evita cair no POSE_NAMES por indice (ex.:
+                # indice 0 de "character" e' "idle_front", que nao se aplica aqui)
+                name = name_prefix
+            else:
+                pose_name = POSE_NAMES.get(category, {}).get(i, f"{category}_{i:02d}")
+                name = f"{name_prefix}_{pose_name}" if name_prefix else pose_name
 
             cutout_path = cat_cutout_dir / f"{name}.png"
             cv2.imwrite(str(cutout_path), cv2.cvtColor(rgba, cv2.COLOR_RGBA2BGRA))

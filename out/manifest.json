@@ -80,6 +80,15 @@
       "width_px": 216,
       "height_px": 236,
       "fbx": "fbx/character/portrait.fbx"
+    },
+    {
+      "name": "garoto_costas",
+      "category": "character",
+      "cutout_png": "cutouts/character/garoto_costas.png",
+      "glb": "glb/character/garoto_costas.glb",
+      "width_px": 645,
+      "height_px": 861,
+      "fbx": "fbx/character/garoto_costas.fbx"
     }
   ],
   "items": [
