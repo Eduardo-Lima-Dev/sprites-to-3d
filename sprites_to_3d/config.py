@@ -118,8 +118,11 @@ CATEGORY_OVERRIDES = {
     "items": {"thickness_frac": 0.12, "merge_kernel": 7, "fill_pockets": {9}},
     "props": {"thickness_frac": 0.08, "merge_kernel": 7, "min_area": 900},
     # merge_kernel maior: antena, cano de saida de agua e ferros de arranque no
-    # topo do telhado ficam com um pequeno vao de fundo ate' o corpo da casa
-    "houses": {"thickness_frac": 0.08, "merge_kernel": 13, "min_area": 900},
+    # topo do telhado ficam com um pequeno vao de fundo ate' o corpo da casa.
+    # fill_pockets: vaos de fundo cercados pela silhueta sao comuns em casas
+    # (embaixo do beiral da varanda, atras de fios/antena, sob o telhado
+    # inclinado) e ficavam brancos solidos sem isso.
+    "houses": {"thickness_frac": 0.08, "merge_kernel": 13, "min_area": 900, "fill_pockets": True},
 }
 
 
