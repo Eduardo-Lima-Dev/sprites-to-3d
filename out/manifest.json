@@ -89,6 +89,357 @@
       "width_px": 645,
       "height_px": 861,
       "fbx": "fbx/character/garoto_costas.fbx"
+    },
+    {
+      "name": "idle_front_v2",
+      "category": "character",
+      "cutout_png": "cutouts/character/idle_front_v2.png",
+      "glb": "glb/character/idle_front_v2.glb",
+      "width_px": 79,
+      "height_px": 204,
+      "fbx": "fbx/character/idle_front_v2.fbx"
+    },
+    {
+      "name": "profile_left_v2",
+      "category": "character",
+      "cutout_png": "cutouts/character/profile_left_v2.png",
+      "glb": "glb/character/profile_left_v2.glb",
+      "width_px": 74,
+      "height_px": 203,
+      "fbx": "fbx/character/profile_left_v2.fbx"
+    },
+    {
+      "name": "profile_right_v2",
+      "category": "character",
+      "cutout_png": "cutouts/character/profile_right_v2.png",
+      "glb": "glb/character/profile_right_v2.glb",
+      "width_px": 75,
+      "height_px": 203,
+      "fbx": "fbx/character/profile_right_v2.fbx"
+    },
+    {
+      "name": "back_v2",
+      "category": "character",
+      "cutout_png": "cutouts/character/back_v2.png",
+      "glb": "glb/character/back_v2.glb",
+      "width_px": 77,
+      "height_px": 203,
+      "fbx": "fbx/character/back_v2.fbx"
+    },
+    {
+      "name": "walk_00",
+      "category": "character",
+      "cutout_png": "cutouts/character/walk_00.png",
+      "glb": "glb/character/walk_00.glb",
+      "width_px": 78,
+      "height_px": 157,
+      "fbx": "fbx/character/walk_00.fbx"
+    },
+    {
+      "name": "walk_01",
+      "category": "character",
+      "cutout_png": "cutouts/character/walk_01.png",
+      "glb": "glb/character/walk_01.glb",
+      "width_px": 75,
+      "height_px": 156,
+      "fbx": "fbx/character/walk_01.fbx"
+    },
+    {
+      "name": "walk_02",
+      "category": "character",
+      "cutout_png": "cutouts/character/walk_02.png",
+      "glb": "glb/character/walk_02.glb",
+      "width_px": 69,
+      "height_px": 155,
+      "fbx": "fbx/character/walk_02.fbx"
+    },
+    {
+      "name": "walk_03",
+      "category": "character",
+      "cutout_png": "cutouts/character/walk_03.png",
+      "glb": "glb/character/walk_03.glb",
+      "width_px": 76,
+      "height_px": 154,
+      "fbx": "fbx/character/walk_03.fbx"
+    },
+    {
+      "name": "walk_04",
+      "category": "character",
+      "cutout_png": "cutouts/character/walk_04.png",
+      "glb": "glb/character/walk_04.glb",
+      "width_px": 76,
+      "height_px": 152,
+      "fbx": "fbx/character/walk_04.fbx"
+    },
+    {
+      "name": "run_00",
+      "category": "character",
+      "cutout_png": "cutouts/character/run_00.png",
+      "glb": "glb/character/run_00.glb",
+      "width_px": 94,
+      "height_px": 135,
+      "fbx": "fbx/character/run_00.fbx"
+    },
+    {
+      "name": "run_01",
+      "category": "character",
+      "cutout_png": "cutouts/character/run_01.png",
+      "glb": "glb/character/run_01.glb",
+      "width_px": 98,
+      "height_px": 129,
+      "fbx": "fbx/character/run_01.fbx"
+    },
+    {
+      "name": "run_02",
+      "category": "character",
+      "cutout_png": "cutouts/character/run_02.png",
+      "glb": "glb/character/run_02.glb",
+      "width_px": 97,
+      "height_px": 129,
+      "fbx": "fbx/character/run_02.fbx"
+    },
+    {
+      "name": "run_03",
+      "category": "character",
+      "cutout_png": "cutouts/character/run_03.png",
+      "glb": "glb/character/run_03.glb",
+      "width_px": 101,
+      "height_px": 124,
+      "fbx": "fbx/character/run_03.fbx"
+    },
+    {
+      "name": "run_04",
+      "category": "character",
+      "cutout_png": "cutouts/character/run_04.png",
+      "glb": "glb/character/run_04.glb",
+      "width_px": 93,
+      "height_px": 131,
+      "fbx": "fbx/character/run_04.fbx"
+    },
+    {
+      "name": "run_05",
+      "category": "character",
+      "cutout_png": "cutouts/character/run_05.png",
+      "glb": "glb/character/run_05.glb",
+      "width_px": 102,
+      "height_px": 124,
+      "fbx": "fbx/character/run_05.fbx"
+    },
+    {
+      "name": "jump_00",
+      "category": "character",
+      "cutout_png": "cutouts/character/jump_00.png",
+      "glb": "glb/character/jump_00.glb",
+      "width_px": 71,
+      "height_px": 105,
+      "fbx": "fbx/character/jump_00.fbx"
+    },
+    {
+      "name": "jump_01",
+      "category": "character",
+      "cutout_png": "cutouts/character/jump_01.png",
+      "glb": "glb/character/jump_01.glb",
+      "width_px": 80,
+      "height_px": 116,
+      "fbx": "fbx/character/jump_01.fbx"
+    },
+    {
+      "name": "jump_02",
+      "category": "character",
+      "cutout_png": "cutouts/character/jump_02.png",
+      "glb": "glb/character/jump_02.glb",
+      "width_px": 94,
+      "height_px": 125,
+      "fbx": "fbx/character/jump_02.fbx"
+    },
+    {
+      "name": "jump_03",
+      "category": "character",
+      "cutout_png": "cutouts/character/jump_03.png",
+      "glb": "glb/character/jump_03.glb",
+      "width_px": 89,
+      "height_px": 114,
+      "fbx": "fbx/character/jump_03.fbx"
+    },
+    {
+      "name": "jump_04",
+      "category": "character",
+      "cutout_png": "cutouts/character/jump_04.png",
+      "glb": "glb/character/jump_04.glb",
+      "width_px": 74,
+      "height_px": 105,
+      "fbx": "fbx/character/jump_04.fbx"
+    },
+    {
+      "name": "jump_05",
+      "category": "character",
+      "cutout_png": "cutouts/character/jump_05.png",
+      "glb": "glb/character/jump_05.glb",
+      "width_px": 72,
+      "height_px": 102,
+      "fbx": "fbx/character/jump_05.fbx"
+    },
+    {
+      "name": "attack_slingshot_00",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot_00.png",
+      "glb": "glb/character/attack_slingshot_00.glb",
+      "width_px": 94,
+      "height_px": 146,
+      "fbx": "fbx/character/attack_slingshot_00.fbx"
+    },
+    {
+      "name": "attack_slingshot_01",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot_01.png",
+      "glb": "glb/character/attack_slingshot_01.glb",
+      "width_px": 105,
+      "height_px": 145,
+      "fbx": "fbx/character/attack_slingshot_01.fbx"
+    },
+    {
+      "name": "attack_slingshot_02",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot_02.png",
+      "glb": "glb/character/attack_slingshot_02.glb",
+      "width_px": 117,
+      "height_px": 144,
+      "fbx": "fbx/character/attack_slingshot_02.fbx"
+    },
+    {
+      "name": "attack_slingshot_03",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot_03.png",
+      "glb": "glb/character/attack_slingshot_03.glb",
+      "width_px": 105,
+      "height_px": 146,
+      "fbx": "fbx/character/attack_slingshot_03.fbx"
+    },
+    {
+      "name": "attack_slingshot_04",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot_04.png",
+      "glb": "glb/character/attack_slingshot_04.glb",
+      "width_px": 117,
+      "height_px": 145,
+      "fbx": "fbx/character/attack_slingshot_04.fbx"
+    },
+    {
+      "name": "attack_slingshot_05",
+      "category": "character",
+      "cutout_png": "cutouts/character/attack_slingshot_05.png",
+      "glb": "glb/character/attack_slingshot_05.glb",
+      "width_px": 93,
+      "height_px": 147,
+      "fbx": "fbx/character/attack_slingshot_05.fbx"
+    },
+    {
+      "name": "hurt_00",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt_00.png",
+      "glb": "glb/character/hurt_00.glb",
+      "width_px": 66,
+      "height_px": 129,
+      "fbx": "fbx/character/hurt_00.fbx"
+    },
+    {
+      "name": "hurt_01",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt_01.png",
+      "glb": "glb/character/hurt_01.glb",
+      "width_px": 81,
+      "height_px": 129,
+      "fbx": "fbx/character/hurt_01.fbx"
+    },
+    {
+      "name": "hurt_02",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt_02.png",
+      "glb": "glb/character/hurt_02.glb",
+      "width_px": 80,
+      "height_px": 128,
+      "fbx": "fbx/character/hurt_02.fbx"
+    },
+    {
+      "name": "hurt_03",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt_03.png",
+      "glb": "glb/character/hurt_03.glb",
+      "width_px": 91,
+      "height_px": 131,
+      "fbx": "fbx/character/hurt_03.fbx"
+    },
+    {
+      "name": "hurt_04",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt_04.png",
+      "glb": "glb/character/hurt_04.glb",
+      "width_px": 93,
+      "height_px": 125,
+      "fbx": "fbx/character/hurt_04.fbx"
+    },
+    {
+      "name": "hurt_05",
+      "category": "character",
+      "cutout_png": "cutouts/character/hurt_05.png",
+      "glb": "glb/character/hurt_05.glb",
+      "width_px": 109,
+      "height_px": 125,
+      "fbx": "fbx/character/hurt_05.fbx"
+    },
+    {
+      "name": "crawl_00",
+      "category": "character",
+      "cutout_png": "cutouts/character/crawl_00.png",
+      "glb": "glb/character/crawl_00.glb",
+      "width_px": 78,
+      "height_px": 73,
+      "fbx": "fbx/character/crawl_00.fbx"
+    },
+    {
+      "name": "crawl_01",
+      "category": "character",
+      "cutout_png": "cutouts/character/crawl_01.png",
+      "glb": "glb/character/crawl_01.glb",
+      "width_px": 118,
+      "height_px": 72,
+      "fbx": "fbx/character/crawl_01.fbx"
+    },
+    {
+      "name": "crawl_02",
+      "category": "character",
+      "cutout_png": "cutouts/character/crawl_02.png",
+      "glb": "glb/character/crawl_02.glb",
+      "width_px": 162,
+      "height_px": 69,
+      "fbx": "fbx/character/crawl_02.fbx"
+    },
+    {
+      "name": "crawl_03",
+      "category": "character",
+      "cutout_png": "cutouts/character/crawl_03.png",
+      "glb": "glb/character/crawl_03.glb",
+      "width_px": 160,
+      "height_px": 66,
+      "fbx": "fbx/character/crawl_03.fbx"
+    },
+    {
+      "name": "crawl_04",
+      "category": "character",
+      "cutout_png": "cutouts/character/crawl_04.png",
+      "glb": "glb/character/crawl_04.glb",
+      "width_px": 138,
+      "height_px": 69,
+      "fbx": "fbx/character/crawl_04.fbx"
+    },
+    {
+      "name": "crawl_05",
+      "category": "character",
+      "cutout_png": "cutouts/character/crawl_05.png",
+      "glb": "glb/character/crawl_05.glb",
+      "width_px": 79,
+      "height_px": 69,
+      "fbx": "fbx/character/crawl_05.fbx"
     }
   ],
   "items": [
